@@ -8,11 +8,18 @@ export default async function Home() {
   const db = client.db("shop");
   const oils = await db.collection("products").find({}).toArray();
 
-  // Convert MongoDB IDs to strings so they can be passed to the Client Component
+  // Explicitly map every field to ensure Next.js "sees" the new stock data
   const serializedOils = oils.map(oil => ({
-    ...oil,
     _id: oil._id.toString(),
+    name: oil.name || "",
+    price: oil.price || 0,
+    description: oil.description || "",
+    etsyUrl: oil.etsyUrl || "#",
+    image: oil.image || "placeholder.jpg",
+    type: oil.type || "essential-oil",
+    stock: Number(oil.stock) || 0, // Force it to be a number
   }));
+
 
   return (
     <>
