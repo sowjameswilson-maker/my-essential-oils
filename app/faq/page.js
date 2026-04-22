@@ -30,40 +30,40 @@ export default function FAQPage() {
   return (
     <>
         <Navbar />
-        <main className="min-h-screen bg-stone-50 py-20 px-6">
-            <div className="max-w-3xl mx-auto">
-                <header className="text-center mb-16">
-                    <h1 className="text-4xl font-serif text-emerald-900 mb-4">
-                        Frequently Asked Questions
-                    </h1>
-                    <p className="text-stone-600">
-                        Everything you need to know about our botanical process.
-                    </p>
-                </header>
+            <main className="min-h-screen bg-stone-50 py-20 px-6">
+                <div className="max-w-3xl mx-auto">
+                    <header className="text-center mb-16">
+                        <h1 className="text-4xl font-serif text-emerald-900 mb-4">
+                            Frequently Asked Questions
+                        </h1>
+                        <p className="text-stone-600">
+                            Everything you need to know about our botanical process.
+                        </p>
+                    </header>
 
-                <div className="space-y-12">
-                    {faqs.map((section, idx) => (
-                        <div key={idx}>
-                            <h2 className="text-xs uppercase tracking-[0.3em] font-bold text-emerald-800 mb-6 border-b border-emerald-100 pb-2">
-                                {section.category}
-                            </h2>
-                            <div className="space-y-6">
-                                {section.questions.map((item, i) => (
-                                    <div key={i} className="bg-white p-6 rounded-2xl border border-stone-100 shadow-sm">
-                                        <h3 className="font-bold text-stone-800 mb-2 font-serif text-lg">
-                                            Q: {item.q}
-                                        </h3>
-                                        <p className="text-stone-600 text-sm leading-relaxed">
-                                            A: {item.a}
-                                        </p>
-                                    </div>
-                                ))}
+                    <div className="space-y-12">
+                        {faqs.map((section, idx) => (
+                            <div key={idx}>
+                                <h2 className="text-xs uppercase tracking-[0.3em] font-bold text-emerald-800 mb-6 border-b border-emerald-100 pb-2">
+                                    {section.category}
+                                </h2>
+                                <div className="space-y-6">
+                                    {section.questions.map((item, i) => (
+                                        <div key={i} className="bg-white p-6 rounded-2xl border border-stone-100 shadow-sm">
+                                            <h3 className="font-bold text-stone-800 mb-2 font-serif text-lg">
+                                                Q: {item.q}
+                                            </h3>
+                                            <p className="text-stone-600 text-sm leading-relaxed">
+                                                A: {item.a}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
         <Footer />
     </>
     );

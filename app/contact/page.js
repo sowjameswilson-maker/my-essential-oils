@@ -9,7 +9,9 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto">
           
           <header className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-serif text-emerald-900 mb-4">Get in Touch</h1>
+            <h1 className="text-4xl md:text-5xl font-serif text-emerald-900 mb-4">
+              Get in Touch
+            </h1>
             <p className="text-stone-600 max-w-lg mx-auto">
               Questions about a specific harvest or need help choosing a scent? We're here to help you navigate the world of wildcrafted botanicals.
             </p>
@@ -20,7 +22,9 @@ export default function ContactPage() {
             {/* Etsy Support (Primary) */}
             <div className="bg-white p-10 rounded-[2rem] shadow-sm border border-stone-100 flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-[#f1641e] text-white rounded-full flex items-center justify-center mb-6 text-2xl font-bold">E</div>
-              <h2 className="text-xl font-serif text-stone-800 mb-4">Message us on Etsy</h2>
+              <h2 className="text-xl font-serif text-stone-800 mb-4">
+                Message us on Etsy
+              </h2>
               <p className="text-stone-500 text-sm mb-8 leading-relaxed">
                 For the fastest response regarding orders, shipping, or returns, please use the Etsy messaging system. 
               </p>
@@ -36,7 +40,9 @@ export default function ContactPage() {
             {/* Email Support (Secondary) */}
             <div className="bg-white p-10 rounded-[2rem] shadow-sm border border-stone-100 flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mb-6 text-2xl">✉</div>
-              <h2 className="text-xl font-serif text-stone-800 mb-4">Direct Email</h2>
+              <h2 className="text-xl font-serif text-stone-800 mb-4">
+                Direct Email
+              </h2>
               <p className="text-stone-500 text-sm mb-8 leading-relaxed">
                 For wholesale inquiries, botanical collaborations, or press, feel free to reach out via email.
               </p>

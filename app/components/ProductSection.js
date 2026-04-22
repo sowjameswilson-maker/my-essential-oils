@@ -36,8 +36,12 @@ export default function ProductSection({ initialOils }) {
           <Link href={`/product/${oil._id}`} key={oil._id} className="group">
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 flex flex-col items-center text-center h-full transition hover:shadow-md">
               <img src={`/${oil.image}`} className="w-40 h-40 object-contain mb-4 group-hover:scale-105 transition" alt={oil.name} />
-              <h2 className="text-xl font-serif text-stone-800">{oil.name}</h2>
-              <p className="text-emerald-700 font-medium mt-auto">${oil.price}</p>
+              <h2 className="text-xl font-serif text-stone-800">
+                {oil.name}
+              </h2>
+              <p className="text-emerald-700 font-medium mt-auto">
+                ${oil.price}
+              </p>
             </div>
           </Link>
         ))}

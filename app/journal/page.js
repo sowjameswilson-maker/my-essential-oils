@@ -43,7 +43,9 @@ export default function JournalPage() {
         <div className="max-w-5xl mx-auto">
           <header className="text-center mb-12">
             <span className="text-emerald-800 text-[10px] uppercase tracking-[0.4em] font-bold mb-4 block">Botanical Rituals</span>
-            <h1 className="text-5xl font-serif text-emerald-950 mb-6">Recipes & Walkthroughs</h1>
+            <h1 className="text-5xl font-serif text-emerald-950 mb-6">
+              Recipes & Walkthroughs
+            </h1>
             
             {/* NEW: Search Bar */}
             <div className="max-w-md mx-auto mt-8 relative">

@@ -26,7 +26,9 @@ export default async function Home() {
       <Navbar />
       <main className="min-h-screen bg-stone-50 py-12 px-6">
         <header className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-serif text-emerald-900 mb-4">Aura Apothecary</h1>
+          <h1 className="text-4xl md:text-5xl font-serif text-emerald-900 mb-4">
+            Naturally of Course Apothecary
+          </h1>
         </header>
         
         {/* Our new interactive section */}
