@@ -12,6 +12,7 @@ export default function Navbar() {
           <Link href="/history" className="hover:text-emerald-700 transition">History</Link>
           <Link href="/faq" className="hover:text-emerald-700 transition">FAQ</Link>
           <Link href="/contact" className="hover:text-emerald-700 transition">Contact</Link>
+          <Link href="/botanicals" className="hover:text-emerald-700 transition">Botanicals</Link>
         </div>
     </nav>
   );
