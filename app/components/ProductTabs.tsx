@@ -73,6 +73,15 @@ export default function ProductTabs({ oil })
                                         Powerful
                                     </span>
                                 </div>
+                                
+                                <div className="flex justify-between items-end mb-2">
+                                    <h3 className="text-emerald-900 font-bold uppercase text-[10px] tracking-widest">
+                                        Notes
+                                    </h3>
+                                    <span className="text-xs font-bold text-emerald-700">
+                                        {oil.note}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         {/* Description */}
@@ -85,21 +94,60 @@ export default function ProductTabs({ oil })
                             </p>
                         </div>
                         {/* Benefits */}
-                        {oil.benefits && (
+                        {/* Replace the benefits block in ProductTabs.tsx with this Object mapping */}
+{oil.benefits && typeof oil.benefits === 'object' && !Array.isArray(oil.benefits) && (
+  <div className="space-y-6">
+    {Object.entries(oil.benefits).map(([category, benefitList]) => (
+      <div key={category} className="border-l-2 border-emerald-100 pl-4">
+        {/* Capitalizes the first letter of your category key */}
+        <h4 className="text-emerald-950 font-serif font-bold text-sm capitalize mb-2">
+          {category.replace(/([A-Z])/g, ' $1')} Benefits
+        </h4>
+        
+        <ul className="grid grid-cols-1 gap-1.5">
+          {Array.isArray(benefitList) ? (
+            benefitList.map((b: string, i: number) => (
+              <li key={i} className="flex items-center text-stone-600 text-xs">
+                <span className="w-1 h-1 bg-emerald-600 rounded-full mr-2"></span>
+                {b}
+              </li>
+            ))
+          ) : (
+            <li className="flex items-center text-stone-600 text-xs">
+              <span className="w-1 h-1 bg-emerald-600 rounded-full mr-2"></span>
+              {String(benefitList)}
+            </li>
+          )}
+        </ul>
+      </div>
+    ))}
+  </div>
+)}
+
+                        {/* Inside app/product/[id]/page.tsx - Near your Safety or Usage section */}
+                        <div className="mt-6 flex items-start space-x-3 text-stone-600">
+                            <span className="text-stone-400 text-lg">
+                                ⏳
+                            </span>
                             <div>
-                                <h3 className="text-emerald-900 font-bold uppercase text-[10px] tracking-widest mb-2">
-                                    Key Benefits
+                                <h3 className="text-stone-800 font-bold uppercase text-[10px] tracking-widest mb-1">
+                                    Estimated Shelf Life
                                 </h3>
-                                    <ul className="grid grid-cols-1 gap-1">
-                                        {oil.benefits.map((b, i) => (
-                                            <li key={i} className="flex items-center">
-                                                <span className="w-1 h-1 bg-emerald-500 rounded-full mr-2">
-                                                </span>
-                                                {b}
-                                            </li>
-                                        ))}
-                                    </ul>
+                                <p className="text-sm leading-relaxed">
+                                    {oil.shelfLife || "12-24 Months"}
+                                </p>
                             </div>
+                        </div>
+                        {/* Inside the details section or botanical tab in app/product/[id]/page.tsx */}
+                        {oil.harvestDate && (
+                        <div className="mt-4 py-2 px-4 bg-emerald-50 rounded-lg border-l-4 border-emerald-500 inline-block">
+                            <p className="text-[10px] uppercase font-bold text-emerald-900 tracking-widest">
+                                Distillation
+                            </p>
+                            <p className="text-sm text-emerald-800 font-serif italic">
+                            {oil.harvestDate}
+                            </p>
+                        </div>
                         )}
 
                         {/* Usage & Safety */}
@@ -135,15 +183,47 @@ export default function ProductTabs({ oil })
                                 Latin Name
                             </p>
                             <p className="italic text-stone-800 text-base">
-                                {oil.botanical?.latinName || 'Information coming soon'}
+                                {oil.botanical?.family || 'Information coming soon'}
                             </p>
                         </div>
                         <div>
                             <p className="text-[10px] uppercase font-bold text-stone-400 mb-1">
-                                Origin
+                                Habit
                             </p>
                             <p className="text-stone-800 text-base">
-                                {oil.botanical?.origin || 'Global'}
+                                {oil.botanical?.leaves || 'Global'}
+                            </p>
+                        </div>
+                        <div>
+                            <p className="text-[10px] uppercase font-bold text-stone-400 mb-1">
+                                Leaf
+                            </p>
+                            <p className="text-stone-800 text-base">
+                                {oil.botanical?.leaves || 'Global'}
+                            </p>
+                        </div>
+                        <div>
+                            <p className="text-[10px] uppercase font-bold text-stone-400 mb-1">
+                                Flower
+                            </p>
+                            <p className="text-stone-800 text-base">
+                                {oil.botanical?.flowers || 'Global'}
+                            </p>
+                        </div>
+                        <div>
+                            <p className="text-[10px] uppercase font-bold text-stone-400 mb-1">
+                                Fruit
+                            </p>
+                            <p className="text-stone-800 text-base">
+                                {oil.botanical?.fruit || 'Global'}
+                            </p>
+                        </div>
+                        <div>
+                            <p className="text-[10px] uppercase font-bold text-stone-400 mb-1">
+                                Habitat
+                            </p>
+                            <p className="text-stone-800 text-base">
+                                {oil.botanical?.habitat || 'Global'}
                             </p>
                         </div>
                         {/* ... keep your other botanical fields here ... */}

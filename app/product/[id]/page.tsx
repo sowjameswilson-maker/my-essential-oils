@@ -4,6 +4,7 @@ import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
 import ProductTabs from '@/app/components/ProductTabs';
 import Link from 'next/link';
+
 export const dynamic = 'force-dynamic';
 
 export default async function ProductPage({ params }) {
@@ -57,13 +58,24 @@ export default async function ProductPage({ params }) {
                 <span className="text-emerald-700 text-[10px] uppercase tracking-[0.2em] font-bold mb-2">
                   {oil.type}
                 </span>
-                <h1 className="text-3xl md:text-4xl font-serif text-emerald-900 mb-2">
-                  {oil.name}
-                </h1>
-                
-                <p className="text-xl font-medium text-stone-800 mb-6">
-                  ${oil.price}
+                {/* Inside app/product/[id]/page.js */}
+                <h1 className="text-4xl font-serif text-emerald-900 mb-2">{oil.name}</h1>
+
+                {/* Prominent Volume Badge */}
+                <p className="text-sm font-medium text-stone-500 mb-4 uppercase tracking-widest">
+                  Volume: <span className="text-stone-800">
+                            {oil.size}
+                          </span>
                 </p>
+
+                <div className="flex items-baseline space-x-3 mb-6">
+                  <p className="text-3xl font-serif text-emerald-800">
+                    ${oil.price}
+                  </p>
+                  <span className="text-stone-400 text-sm">
+                    CAD
+                  </span>
+                </div>
                 
                 <div className="space-y-4 mb-8">
                   {oil.stock > 0 ? (

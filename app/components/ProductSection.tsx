@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+
+
 export default function ProductSection({ initialOils }) {
   // 1. Change default from 'all' to your first category
   const [filter, setFilter] = useState('essential-oil');
@@ -39,10 +41,20 @@ export default function ProductSection({ initialOils }) {
               <h2 className="text-xl font-serif text-stone-800">
                 {oil.name}
               </h2>
-              <p className="text-emerald-700 font-medium mt-auto">
-                ${oil.price}
-              </p>
+              {/* Updated Price & Volume Line */}
+              <div className="flex items-center justify-center space-x-2 my-2">
+                <p className="text-emerald-700 font-medium text-lg">
+                  ${oil.price}
+                </p>
+                <span className="text-stone-400 text-sm">
+                  / {oil.size}
+                </span>
+              </div>
+                <p className="text-emerald-700 font-medium mt-auto">
+                  {oil.description}
+                </p>
             </div>
+           
           </Link>
         ))}
       </div>

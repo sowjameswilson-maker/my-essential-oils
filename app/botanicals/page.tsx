@@ -59,6 +59,18 @@ export default async function BotanicalGuide() {
                                             </strong> 
                                             {plant.idMarkers}
                                         </p>
+                                         <p>
+                                            <strong>
+                                               Aroma:
+                                            </strong> 
+                                            {plant.aroma}
+                                        </p>
+                                         <p>
+                                            <strong>
+                                                Plant Parts:
+                                            </strong> 
+                                            {plant.partsUsed}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
