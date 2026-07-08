@@ -94,33 +94,32 @@ export default function ProductTabs({ oil })
                             </p>
                         </div>
                         {/* Benefits */}
-                        {/* Replace the benefits block in ProductTabs.tsx with this Object mapping */}
+                       {/* Updated version using clean ghost tags instead of React.Fragment */}
                         {oil.benefits && typeof oil.benefits === 'object' && !Array.isArray(oil.benefits) && (
-                        <div className="space-y-6">
+                        <div>
+                            <h3 className="text-emerald-950 font-serif font-bold text-base tracking-wide mb-4">
+                            Benefits
+                            </h3>
+                            
+                            <ul className="grid grid-cols-1 gap-2.5">
                             {Object.entries(oil.benefits).map(([category, benefitList]) => (
-                            <div key={category} className="border-l-2 border-emerald-100 pl-4">
-                                {/* Capitalizes the first letter of your category key */}
-                                <h4 className="text-emerald-950 font-serif font-bold text-sm capitalize mb-2">
-                                {category.replace(/([A-Z])/g, ' $1')} Benefits
-                                </h4>
-                                
-                                <ul className="grid grid-cols-1 gap-1.5">
+                                <div key={category} className="contents"> {/* Keeps your list items grouped safely */}
                                 {Array.isArray(benefitList) ? (
                                     benefitList.map((b: string, i: number) => (
-                                    <li key={i} className="flex items-center text-stone-600 text-xs">
-                                        <span className="w-1 h-1 bg-emerald-600 rounded-full mr-2"></span>
+                                    <li key={`${category}-${i}`} className="flex items-start text-stone-600 text-sm leading-relaxed">
+                                        <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
                                         {b}
                                     </li>
                                     ))
                                 ) : (
-                                    <li className="flex items-center text-stone-600 text-xs">
-                                    <span className="w-1 h-1 bg-emerald-600 rounded-full mr-2"></span>
+                                    <li className="flex items-start text-stone-600 text-sm leading-relaxed">
+                                    <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
                                     {String(benefitList)}
                                     </li>
                                 )}
-                                </ul>
-                            </div>
+                                </div>
                             ))}
+                            </ul>
                         </div>
                         )}
 
