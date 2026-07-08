@@ -94,51 +94,59 @@ export default function ProductTabs({ oil })
                             </p>
                         </div>
                         {/* Benefits */}
-                       {/* Unified Layout: Prioritizes explicit Array verification before Object inspection */}
-                        {oil.benefits && (
-                        <div>
-                            <h3 className="text-emerald-950 font-serif font-bold text-base tracking-wide mb-4">
-                            Benefits
-                            </h3>
-                            
-                            <ul className="grid grid-cols-1 gap-2.5">
-                            {/* 1. Flat Standard Lists (Checks this FIRST so simple arrays don't get caught as objects) */}
-                            {Array.isArray(oil.benefits) ? (
-                                oil.benefits.map((b: string, i: number) => (
-                                <li key={`flat-list-item-${i}`} className="flex items-start text-stone-600 text-sm leading-relaxed">
-                                    <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
-                                    {b}
-                                </li>
-                                ))
-                            ) : /* 2. Handle Categorized Database Objects (e.g., Goldenrod & Black Spruce) */
-                            typeof oil.benefits === 'object' && oil.benefits !== null ? (
-                                Object.entries(oil.benefits).map(([category, benefitList]) => (
-                                <div key={category} className="contents">
-                                    {Array.isArray(benefitList) ? (
-                                    benefitList.map((b: string, i: number) => (
-                                        <li key={`${category}-${i}`} className="flex items-start text-stone-600 text-sm leading-relaxed">
-                                        <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
-                                        {b}
-                                        </li>
-                                    ))
-                                    ) : (
-                                    <li className="flex items-start text-stone-600 text-sm leading-relaxed">
-                                        <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
-                                        {String(benefitList)}
-                                    </li>
-                                    )}
-                                </div>
-                                ))
-                            ) : (
-                                /* 3. Handle Plain Sentences (Fallback structural safeguard text string) */
-                                <li className="flex items-start text-stone-600 text-sm leading-relaxed">
-                                <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
-                                {String(oil.benefits)}
-                                </li>
-                            )}
-                            </ul>
-                        </div>
-                        )}
+                       {/* Dynamic Benefits Section - Safely isolates empty data arrays */}
+{oil.benefits && (
+  <div>
+    <h3 className="text-emerald-950 font-serif font-bold text-base tracking-wide mb-4">
+      Benefits
+    </h3>
+    
+    <ul className="grid grid-cols-1 gap-2.5">
+      {/* 1. Standard Flat Lists */}
+      {Array.isArray(oil.benefits) ? (
+        oil.benefits
+          .filter((b) => b && String(b).trim() !== "") // Filters out any blank or ghost entries
+          .map((b: string, i: number) => (
+            <li key={`flat-list-item-${i}`} className="flex items-start text-stone-600 text-sm leading-relaxed">
+              <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
+              {b}
+            </li>
+          ))
+      ) : /* 2. Categorized Objects (Goldenrod & Black Spruce) */
+      typeof oil.benefits === 'object' && oil.benefits !== null ? (
+        Object.entries(oil.benefits).map(([category, benefitList]) => (
+          <div key={category} className="contents">
+            {Array.isArray(benefitList) ? (
+              benefitList
+                .filter((b) => b && String(b).trim() !== "")
+                .map((b: string, i: number) => (
+                  <li key={`${category}-${i}`} className="flex items-start text-stone-600 text-sm leading-relaxed">
+                    <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
+                    {b}
+                  </li>
+                ))
+            ) : (
+              benefitList && String(benefitList).trim() !== "" && (
+                <li className="flex items-start text-stone-600 text-sm leading-relaxed">
+                  <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
+                  {String(benefitList)}
+                </li>
+              )
+            )}
+          </div>
+        ))
+      ) : (
+        /* 3. Fallback Plain Strings */
+        String(oil.benefits).trim() !== "" && (
+          <li className="flex items-start text-stone-600 text-sm leading-relaxed">
+            <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
+            {String(oil.benefits)}
+          </li>
+        )
+      )}
+    </ul>
+  </div>
+)}
 
                         {/* Inside app/product/[id]/page.tsx - Near your Safety or Usage section */}
                         <div className="mt-6 flex items-start space-x-3 text-stone-600">
