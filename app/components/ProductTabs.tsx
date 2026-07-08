@@ -95,34 +95,34 @@ export default function ProductTabs({ oil })
                         </div>
                         {/* Benefits */}
                         {/* Replace the benefits block in ProductTabs.tsx with this Object mapping */}
-{oil.benefits && typeof oil.benefits === 'object' && !Array.isArray(oil.benefits) && (
-  <div className="space-y-6">
-    {Object.entries(oil.benefits).map(([category, benefitList]) => (
-      <div key={category} className="border-l-2 border-emerald-100 pl-4">
-        {/* Capitalizes the first letter of your category key */}
-        <h4 className="text-emerald-950 font-serif font-bold text-sm capitalize mb-2">
-          {category.replace(/([A-Z])/g, ' $1')} Benefits
-        </h4>
-        
-        <ul className="grid grid-cols-1 gap-1.5">
-          {Array.isArray(benefitList) ? (
-            benefitList.map((b: string, i: number) => (
-              <li key={i} className="flex items-center text-stone-600 text-xs">
-                <span className="w-1 h-1 bg-emerald-600 rounded-full mr-2"></span>
-                {b}
-              </li>
-            ))
-          ) : (
-            <li className="flex items-center text-stone-600 text-xs">
-              <span className="w-1 h-1 bg-emerald-600 rounded-full mr-2"></span>
-              {String(benefitList)}
-            </li>
-          )}
-        </ul>
-      </div>
-    ))}
-  </div>
-)}
+                        {oil.benefits && typeof oil.benefits === 'object' && !Array.isArray(oil.benefits) && (
+                        <div className="space-y-6">
+                            {Object.entries(oil.benefits).map(([category, benefitList]) => (
+                            <div key={category} className="border-l-2 border-emerald-100 pl-4">
+                                {/* Capitalizes the first letter of your category key */}
+                                <h4 className="text-emerald-950 font-serif font-bold text-sm capitalize mb-2">
+                                {category.replace(/([A-Z])/g, ' $1')} Benefits
+                                </h4>
+                                
+                                <ul className="grid grid-cols-1 gap-1.5">
+                                {Array.isArray(benefitList) ? (
+                                    benefitList.map((b: string, i: number) => (
+                                    <li key={i} className="flex items-center text-stone-600 text-xs">
+                                        <span className="w-1 h-1 bg-emerald-600 rounded-full mr-2"></span>
+                                        {b}
+                                    </li>
+                                    ))
+                                ) : (
+                                    <li className="flex items-center text-stone-600 text-xs">
+                                    <span className="w-1 h-1 bg-emerald-600 rounded-full mr-2"></span>
+                                    {String(benefitList)}
+                                    </li>
+                                )}
+                                </ul>
+                            </div>
+                            ))}
+                        </div>
+                        )}
 
                         {/* Inside app/product/[id]/page.tsx - Near your Safety or Usage section */}
                         <div className="mt-6 flex items-start space-x-3 text-stone-600">

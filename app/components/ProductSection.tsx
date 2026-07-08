@@ -39,7 +39,7 @@ export default function ProductSection({ initialOils }) {
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 flex flex-col items-center text-center h-full transition hover:shadow-md">
               <img src={`/${oil.image}`} className="w-40 h-40 object-contain mb-4 group-hover:scale-105 transition" alt={oil.title} />
               <h2 className="text-xl font-serif text-stone-800">
-                {oil.title}
+                {oil.name}
               </h2>
               {/* Updated Price & Volume Line */}
               <div className="flex items-center justify-center space-x-2 my-2">
