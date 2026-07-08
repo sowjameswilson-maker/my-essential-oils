@@ -94,7 +94,7 @@ export default function ProductTabs({ oil })
                             </p>
                         </div>
                         {/* Benefits */}
-                       {/* Unified Layout: Explicitly maps Objects, Arrays, and Strings without overlaps */}
+                       {/* Unified Layout: Prioritizes explicit Array verification before Object inspection */}
                         {oil.benefits && (
                         <div>
                             <h3 className="text-emerald-950 font-serif font-bold text-base tracking-wide mb-4">
@@ -102,8 +102,16 @@ export default function ProductTabs({ oil })
                             </h3>
                             
                             <ul className="grid grid-cols-1 gap-2.5">
-                            {/* 1. True Database Object Handling (e.g., Goldenrod with sub-categories) */}
-                            {typeof oil.benefits === 'object' && !Array.isArray(oil.benefits) && (
+                            {/* 1. Flat Standard Lists (Checks this FIRST so simple arrays don't get caught as objects) */}
+                            {Array.isArray(oil.benefits) ? (
+                                oil.benefits.map((b: string, i: number) => (
+                                <li key={`flat-list-item-${i}`} className="flex items-start text-stone-600 text-sm leading-relaxed">
+                                    <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
+                                    {b}
+                                </li>
+                                ))
+                            ) : /* 2. Handle Categorized Database Objects (e.g., Goldenrod & Black Spruce) */
+                            typeof oil.benefits === 'object' && oil.benefits !== null ? (
                                 Object.entries(oil.benefits).map(([category, benefitList]) => (
                                 <div key={category} className="contents">
                                     {Array.isArray(benefitList) ? (
@@ -121,23 +129,11 @@ export default function ProductTabs({ oil })
                                     )}
                                 </div>
                                 ))
-                            )}
-
-                            {/* 2. Flat Array Handling (For your older products using simple lists) */}
-                            {Array.isArray(oil.benefits) && (
-                                oil.benefits.map((b: string, i: number) => (
-                                <li key={`flat-list-${i}`} className="flex items-start text-stone-600 text-sm leading-relaxed">
-                                    <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
-                                    {b}
-                                </li>
-                                ))
-                            )}
-
-                            {/* 3. Plain Text String Handling (Fallback structural safeguard) */}
-                            {typeof oil.benefits === 'string' && (
+                            ) : (
+                                /* 3. Handle Plain Sentences (Fallback structural safeguard text string) */
                                 <li className="flex items-start text-stone-600 text-sm leading-relaxed">
                                 <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
-                                {oil.benefits}
+                                {String(oil.benefits)}
                                 </li>
                             )}
                             </ul>
