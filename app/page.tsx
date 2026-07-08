@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProductSection from './components/ProductSection';
 import Link from 'next/link';
+import { title } from 'node:process';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,6 +17,7 @@ export default async function Home() {
   const serializedOils = oils.map(oil => ({
     _id: oil._id.toString(),
     name: oil.name || "",
+    title: oil.title || "",
     price: oil.price || 0,
     size: oil.size || "",
     description: oil.description || "",
