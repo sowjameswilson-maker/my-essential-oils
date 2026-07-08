@@ -56,50 +56,44 @@ export default async function ProductPage({ params }) {
 
               {/* Price & Buy Side */}
               <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                <span className="text-emerald-700 text-[10px] uppercase tracking-[0.2em] font-bold mb-2">
-                  {oil.type}
-                </span>
-                {/* Inside app/product/[id]/page.js */}
-                {/* Replace your old h1 name block with this adaptive layout */}
+               {/* 1. THE THREE-LINE TITLE BLOCK (Replaces the raw name header) */}
                 {oil.title && Array.isArray(oil.title) ? (
-                  <div className="mb-6 space-y-1.5 border-b border-stone-200 pb-5">
-                    {/* Line 1: Main Identification (e.g., Goldenrod Essential Oil) */}
+                  <div className="space-y-1.5 mb-4">
+                    {/* Line 1: Main Identification */}
                     <h1 className="text-3xl text-stone-900 font-serif font-bold tracking-wide">
                       {oil.title[0]}
                     </h1>
-                    
-                    {/* Line 2: Purity & Sourcing Subtitle (e.g., 100% Wildcrafted Botanical) */}
+                    {/* Line 2: Purity & Sourcing Subtitle */}
                     <p className="text-xs uppercase font-bold text-emerald-800 tracking-widest pt-0.5">
                       {oil.title[1]}
                     </p>
-                    
                     {/* Line 3: Multi-purpose Utility Statement */}
                     <p className="text-sm text-stone-500 font-serif italic pt-1 leading-relaxed">
                       {oil.title[2]}
                     </p>
                   </div>
                 ) : (
-                  // Fallback if the database document doesn't have the title array yet
+                  // Fallback layout if a database document doesn't have the title array yet
                   <h1 className="text-3xl font-serif text-stone-900 font-bold mb-4">
                     {oil.name}
                   </h1>
                 )}
 
-                {/* Prominent Volume Badge */}
-                <p className="text-sm font-medium text-stone-500 mb-4 uppercase tracking-widest">
-                  Volume: <span className="text-stone-800">
-                            {oil.size}
-                          </span>
-                </p>
-                
-                <div className="flex items-baseline space-x-3 mb-6">
-                  <p className="text-3xl font-serif text-emerald-800">
-                    ${oil.price}
-                  </p>
+                {/* 2. THE VOLUME BLOCK (Directly below the title) */}
+                {oil.volume && (
+                  <div className="text-xs uppercase font-bold text-stone-400 tracking-widest mb-3">
+                    Volume: {oil.volume}
+                  </div>
+                )}
+
+                {/* 3. THE AMOUNT/PRICE BLOCK (Directly below the volume) */}
+                <div className="text-2xl font-serif text-stone-900 font-medium mb-6 border-b border-stone-100 pb-6">
+                  ${oil.price} <span className="text-xs text-stone-400 font-sans uppercase font-normal">CAD</span>
                   <span className="text-stone-400 text-sm">
                     CAD
                   </span>
                 </div>
+                
                 {/* Inside app/product/[id]/page.tsx - Just above your Purchase Button layout */}
                 {oil.title && Array.isArray(oil.title) && (
                   <div className="mb-6 space-y-1 border-b border-stone-100 pb-6">
