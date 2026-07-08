@@ -1,4 +1,4 @@
-
+export const dynamic = 'force-dynamic';
 import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 import Navbar from '@/app/components/Navbar';
@@ -6,7 +6,7 @@ import Footer from '@/app/components/Footer';
 import ProductTabs from '@/app/components/ProductTabs';
 import Link from 'next/link';
 
-export const dynamic = 'force-dynamic';
+
 
 export default async function ProductPage({ params }) {
   const { id } = await params; 
@@ -30,7 +30,7 @@ export default async function ProductPage({ params }) {
     // Add this line below to safely package your benefits for the page
     benefits: oil.benefits ? JSON.parse(JSON.stringify(oil.benefits)) : null
   };
-  
+
   return (
     <>
       <Navbar />

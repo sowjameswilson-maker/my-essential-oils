@@ -94,7 +94,7 @@ export default function ProductTabs({ oil })
                             </p>
                         </div>
                         {/* Benefits */}
-                       {/* Dynamic Benefits Section - Safely isolates empty data arrays */}
+                       {/* Prioritizes strict list parsing before structural object inspection */}
 {oil.benefits && (
   <div>
     <h3 className="text-emerald-950 font-serif font-bold text-base tracking-wide mb-4">
@@ -102,23 +102,23 @@ export default function ProductTabs({ oil })
     </h3>
     
     <ul className="grid grid-cols-1 gap-2.5">
-      {/* 1. Standard Flat Lists */}
+      {/* 1. Flat Arrays First (Catches standard lists cleanly) */}
       {Array.isArray(oil.benefits) ? (
         oil.benefits
-          .filter((b) => b && String(b).trim() !== "") // Filters out any blank or ghost entries
+          .filter(b => b && String(b).trim() !== "")
           .map((b: string, i: number) => (
             <li key={`flat-list-item-${i}`} className="flex items-start text-stone-600 text-sm leading-relaxed">
               <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
               {b}
             </li>
           ))
-      ) : /* 2. Categorized Objects (Goldenrod & Black Spruce) */
+      ) : /* 2. Nested Categorized Objects (e.g., Goldenrod & Black Spruce) */
       typeof oil.benefits === 'object' && oil.benefits !== null ? (
         Object.entries(oil.benefits).map(([category, benefitList]) => (
           <div key={category} className="contents">
             {Array.isArray(benefitList) ? (
               benefitList
-                .filter((b) => b && String(b).trim() !== "")
+                .filter(b => b && String(b).trim() !== "")
                 .map((b: string, i: number) => (
                   <li key={`${category}-${i}`} className="flex items-start text-stone-600 text-sm leading-relaxed">
                     <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
@@ -136,7 +136,7 @@ export default function ProductTabs({ oil })
           </div>
         ))
       ) : (
-        /* 3. Fallback Plain Strings */
+        /* 3. Standard String Fallback */
         String(oil.benefits).trim() !== "" && (
           <li className="flex items-start text-stone-600 text-sm leading-relaxed">
             <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
