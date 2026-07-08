@@ -1,9 +1,11 @@
+
 import clientPromise from '../lib/mongodb';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProductSection from './components/ProductSection';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   const client = await clientPromise;
