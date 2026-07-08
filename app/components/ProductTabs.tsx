@@ -94,31 +94,52 @@ export default function ProductTabs({ oil })
                             </p>
                         </div>
                         {/* Benefits */}
-                       {/* Updated version using clean ghost tags instead of React.Fragment */}
-                        {oil.benefits && typeof oil.benefits === 'object' && !Array.isArray(oil.benefits) && (
+                       {/* Unified Layout: Explicitly maps Objects, Arrays, and Strings without overlaps */}
+                        {oil.benefits && (
                         <div>
                             <h3 className="text-emerald-950 font-serif font-bold text-base tracking-wide mb-4">
                             Benefits
                             </h3>
                             
                             <ul className="grid grid-cols-1 gap-2.5">
-                            {Object.entries(oil.benefits).map(([category, benefitList]) => (
-                                <div key={category} className="contents"> {/* Keeps your list items grouped safely */}
-                                {Array.isArray(benefitList) ? (
+                            {/* 1. True Database Object Handling (e.g., Goldenrod with sub-categories) */}
+                            {typeof oil.benefits === 'object' && !Array.isArray(oil.benefits) && (
+                                Object.entries(oil.benefits).map(([category, benefitList]) => (
+                                <div key={category} className="contents">
+                                    {Array.isArray(benefitList) ? (
                                     benefitList.map((b: string, i: number) => (
-                                    <li key={`${category}-${i}`} className="flex items-start text-stone-600 text-sm leading-relaxed">
+                                        <li key={`${category}-${i}`} className="flex items-start text-stone-600 text-sm leading-relaxed">
                                         <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
                                         {b}
-                                    </li>
+                                        </li>
                                     ))
-                                ) : (
+                                    ) : (
                                     <li className="flex items-start text-stone-600 text-sm leading-relaxed">
-                                    <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
-                                    {String(benefitList)}
+                                        <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
+                                        {String(benefitList)}
                                     </li>
-                                )}
+                                    )}
                                 </div>
-                            ))}
+                                ))
+                            )}
+
+                            {/* 2. Flat Array Handling (For your older products using simple lists) */}
+                            {Array.isArray(oil.benefits) && (
+                                oil.benefits.map((b: string, i: number) => (
+                                <li key={`flat-list-${i}`} className="flex items-start text-stone-600 text-sm leading-relaxed">
+                                    <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
+                                    {b}
+                                </li>
+                                ))
+                            )}
+
+                            {/* 3. Plain Text String Handling (Fallback structural safeguard) */}
+                            {typeof oil.benefits === 'string' && (
+                                <li className="flex items-start text-stone-600 text-sm leading-relaxed">
+                                <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full mr-3 mt-2 shrink-0"></span>
+                                {oil.benefits}
+                                </li>
+                            )}
                             </ul>
                         </div>
                         )}
