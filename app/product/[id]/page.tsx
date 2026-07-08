@@ -68,7 +68,7 @@ export default async function ProductPage({ params }) {
                             {oil.size}
                           </span>
                 </p>
-
+                
                 <div className="flex items-baseline space-x-3 mb-6">
                   <p className="text-3xl font-serif text-emerald-800">
                     ${oil.price}
@@ -77,7 +77,25 @@ export default async function ProductPage({ params }) {
                     CAD
                   </span>
                 </div>
-                
+                {/* Inside app/product/[id]/page.tsx - Just above your Purchase Button layout */}
+                {oil.title && Array.isArray(oil.title) && (
+                  <div className="mb-6 space-y-1 border-b border-stone-100 pb-6">
+                    {/* Line 1: Main Product Identification */}
+                    <h2 className="text-xl text-stone-900 font-serif font-semibold tracking-wide">
+                      {oil.title[0]}
+                    </h2>
+                    
+                    {/* Line 2: Purity & Sourcing Subtitle */}
+                    <p className="text-xs uppercase font-bold text-emerald-800 tracking-widest">
+                      {oil.title[1]}
+                    </p>
+                    
+                    {/* Line 3: Multi-purpose Utility Statement */}
+                    <p className="text-sm text-stone-500 font-serif italic pt-1 leading-relaxed">
+                      {oil.title[2]}
+                    </p>
+                  </div>
+                )}
                 <div className="space-y-4 mb-8">
                   {oil.stock > 0 ? (
                     <a href={oil.etsyUrl} target="_blank" className="block w-full py-4 bg-[#f1641e] text-white rounded-full font-bold text-center shadow-md">

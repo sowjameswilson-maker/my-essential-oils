@@ -17,7 +17,6 @@ export default async function Home() {
   const serializedOils = oils.map(oil => ({
     _id: oil._id.toString(),
     name: oil.name || "",
-    title: oil.title || "",
     price: oil.price || 0,
     size: oil.size || "",
     description: oil.description || "",
