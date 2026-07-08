@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import ProductSection from './components/ProductSection';
 import Link from 'next/link';
 
+
 export default async function Home() {
   const client = await clientPromise;
   const db = client.db("shop");
@@ -16,6 +17,7 @@ export default async function Home() {
     price: oil.price || 0,
     size: oil.size || "",
     description: oil.description || "",
+    subtitle: oil.subtitle || "Handcrafted Batch", // ADD THIS LINE
     etsyUrl: oil.etsyUrl || "#",
     image: oil.image || "placeholder.jpg",
     type: oil.type || "essential-oil",

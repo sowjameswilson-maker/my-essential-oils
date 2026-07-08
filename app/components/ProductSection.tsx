@@ -50,9 +50,10 @@ export default function ProductSection({ initialOils }) {
                   / {oil.size}
                 </span>
               </div>
-                <p className="text-emerald-700 font-medium mt-auto">
-                  {oil.description}
-                </p>
+                {/* Inside app/components/ProductSection.tsx card layout */}
+              <p className="text-[10px] text-stone-400 uppercase tracking-wider mt-1">
+                {oil.subtitle}
+              </p>
             </div>
            
           </Link>
