@@ -33,7 +33,7 @@ export default async function ProductPage({ params }) {
     <>
       <Navbar />
       <main className="min-h-screen bg-stone-50 py-12 md:py-20 px-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           
           {/* Back to Shop Button */}
           <Link 
@@ -69,7 +69,7 @@ export default async function ProductPage({ params }) {
               {serializedOil.title && Array.isArray(serializedOil.title) && serializedOil.title.length >= 3 ? (
                 <div className="space-y-1 mb-4">
                   {/* Line 1: Main Product Identification */}
-                  <h1 className="text-3xl text-stone-900 font-serif font-bold tracking-wide leading-tight">
+                  <h1 className="t"text-2xl md:text-3xl text-stone-900 font-serif font-bold tracking-wide leading-tight md:whitespace-nowrap>
                     {serializedOil.title[0]}
                   </h1>
                   {/* Line 2: Purity & Sourcing Subtitle */}
