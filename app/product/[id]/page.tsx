@@ -68,8 +68,8 @@ export default async function ProductPage({ params }) {
               {/* 1. THE THREE-LINE TITLE BLOCK (Completely replaces the raw name header) */}
               {serializedOil.title && Array.isArray(serializedOil.title) && serializedOil.title.length >= 3 ? (
                 <div className="space-y-1 mb-4">
-                  {/* Line 1: Main Product Identification */}
-                  <h1 className="t"text-2xl md:text-3xl text-stone-900 font-serif font-bold tracking-wide leading-tight md:whitespace-nowrap>
+                  {/* Line 1: Main Product Identification - FIXED TYPO */}
+                  <h1 className="text-2xl md:text-3xl text-stone-900 font-serif font-bold tracking-wide leading-tight md:whitespace-nowrap">
                     {serializedOil.title[0]}
                   </h1>
                   {/* Line 2: Purity & Sourcing Subtitle */}
