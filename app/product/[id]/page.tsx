@@ -60,7 +60,30 @@ export default async function ProductPage({ params }) {
                   {oil.type}
                 </span>
                 {/* Inside app/product/[id]/page.js */}
-                <h1 className="text-4xl font-serif text-emerald-900 mb-2">{oil.name}</h1>
+                {/* Replace your old h1 name block with this adaptive layout */}
+                {oil.title && Array.isArray(oil.title) ? (
+                  <div className="mb-6 space-y-1.5 border-b border-stone-200 pb-5">
+                    {/* Line 1: Main Identification (e.g., Goldenrod Essential Oil) */}
+                    <h1 className="text-3xl text-stone-900 font-serif font-bold tracking-wide">
+                      {oil.title[0]}
+                    </h1>
+                    
+                    {/* Line 2: Purity & Sourcing Subtitle (e.g., 100% Wildcrafted Botanical) */}
+                    <p className="text-xs uppercase font-bold text-emerald-800 tracking-widest pt-0.5">
+                      {oil.title[1]}
+                    </p>
+                    
+                    {/* Line 3: Multi-purpose Utility Statement */}
+                    <p className="text-sm text-stone-500 font-serif italic pt-1 leading-relaxed">
+                      {oil.title[2]}
+                    </p>
+                  </div>
+                ) : (
+                  // Fallback if the database document doesn't have the title array yet
+                  <h1 className="text-3xl font-serif text-stone-900 font-bold mb-4">
+                    {oil.name}
+                  </h1>
+                )}
 
                 {/* Prominent Volume Badge */}
                 <p className="text-sm font-medium text-stone-500 mb-4 uppercase tracking-widest">
