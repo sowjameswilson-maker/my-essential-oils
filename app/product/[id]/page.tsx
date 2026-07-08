@@ -52,7 +52,8 @@ export default async function ProductPage({ params }) {
           <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-stone-100 flex flex-col md:flex-row mb-8">
             
             {/* Image Side */}
-            <div className="md:w-1/2 bg-stone-100 p-8 flex items-center justify-center">
+            {/* FIXED: Changed from md:w-1/2 to md:w-[40%] to free up space */}
+            <div className="md:w-[40%] bg-stone-100 p-8 flex items-center justify-center">
               <img 
                 src={`/${serializedOil.image}`} 
                 alt={serializedOil.name} 
@@ -61,7 +62,8 @@ export default async function ProductPage({ params }) {
             </div>
 
             {/* Price & Buy Side */}
-            <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+            {/* FIXED: Changed from md:w-1/2 to md:w-[60%] so your title doesn't wrap awkwardly */}
+            <div className="md:w-[60%] p-8 md:p-12 flex flex-col justify-center">
               
               {/* 1. THE THREE-LINE TITLE BLOCK (Completely replaces the raw name header) */}
               {serializedOil.title && Array.isArray(serializedOil.title) && serializedOil.title.length >= 3 ? (
