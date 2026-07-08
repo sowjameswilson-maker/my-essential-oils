@@ -23,12 +23,14 @@ export default async function ProductPage({ params }) {
     );
   }
 
-  // Converts the MongoDB object to a plain JavaScript object
+  // Converts the MongoDB object to a plain JavaScript object safely
   const serializedOil = {
     ...oil,
     _id: oil._id.toString(),
+    // Add this line below to safely package your benefits for the page
+    benefits: oil.benefits ? JSON.parse(JSON.stringify(oil.benefits)) : null
   };
-
+  
   return (
     <>
       <Navbar />
