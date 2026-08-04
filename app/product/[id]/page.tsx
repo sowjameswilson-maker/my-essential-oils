@@ -23,13 +23,42 @@ export default async function ProductPage({ params }) {
     );
   }
 
-  // Converts the MongoDB object to a plain JavaScript object safely
-  const serializedOil = {
-    ...oil,
-    _id: oil._id.toString(),
-    // Add this line below to safely package your benefits for the page
-    benefits: oil.benefits ? JSON.parse(JSON.stringify(oil.benefits)) : null
-  };
+// Explicit data packaging - KEEPING NAME AND TITLE STRICTLY SEPARATE
+const serializedOil = {
+  _id: oil._id.toString(),
+  
+  // YOUR UNIQUE INDEPENDENT DATABASE VALUES
+  title: oil.title || "Unnamed Botanical",
+  name: oil.name || "", 
+  
+  // RESTORED CORE PACKAGING FIELDS
+  volume: oil.volume || "Standard Size",
+  stock: oil.stock !== undefined ? oil.stock : 1,
+  price: oil.price || 0,
+  description: oil.description || "",
+  etsyUrl: oil.etsyUrl || "",
+  image: oil.image || "",
+  type: oil.type || "essential-oil",
+  shelfLife: oil.shelfLife || "12-24 Months",
+  harvestDate: oil.harvestDate || "",
+  
+  // CORE MAKER TECH FIELDS 
+  botanicalName: oil.botanicalName || "",
+  partUsed: oil.partUsed || "",
+  flashpoint: oil.flashpoint || "",
+  origin: oil.origin || "",
+  preservation: oil.preservation || "",
+  
+  // SCENT ANALYTICS FIELDS 
+  scentProfile: oil.scentProfile || "",
+  scentNotes: oil.scentNotes || "",
+  scentStrength: oil.scentStrength || 3,
+
+  // DEEP STRUCTURE OBJECT FIELDS
+  benefits: oil.benefits ? JSON.parse(JSON.stringify(oil.benefits)) : null,
+  uses: oil.uses ? JSON.parse(JSON.stringify(oil.uses)) : null,
+  warnings: oil.warnings ? JSON.parse(JSON.stringify(oil.warnings)) : null
+};
 
   return (
     <>
