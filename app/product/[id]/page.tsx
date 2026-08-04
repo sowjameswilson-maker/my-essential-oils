@@ -100,7 +100,7 @@ const serializedOil = {
               {serializedOil.title && Array.isArray(serializedOil.title) && serializedOil.title.length >= 3 ? (
                 <div className="space-y-1 mb-4">
                   {/* Line 1: Main Product Identification - FIXED TYPO */}
-                  <h1 className="text-2xl md:text-3xl text-stone-900 font-serif font-bold tracking-wide leading-tight md:whitespace-nowrap">
+                  <h1 className="text-2xl md:text-3xl text-stone-900 font-serif font-bold tracking-wide leading-tight break-words">
                     {serializedOil.title[0]}
                   </h1>
                   {/* Line 2: Purity & Sourcing Subtitle */}
