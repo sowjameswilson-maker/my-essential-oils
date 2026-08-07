@@ -19,18 +19,25 @@ export interface Ritual {
 export default async function JournalPage() {
   const client = await clientPromise;
   const db = client.db("shop");
-  const data = await db.collection("recipes").find({}).toArray();
+  // 1. Point this exactly to your target recipes or journal collection name in Atlas
+  const rawRecipes = await db.collection("recipes").find({}).toArray();
 
-  // 2. Serialize for the Client
-  const serializedRecipes: Ritual[] = data.map(recipe => ({
-    ...recipe,
+  // 2. Explicitly map the properties so Next.js hands them down to JournalClient safely
+  const serializedRecipes = rawRecipes.map((recipe) => ({
     _id: recipe._id.toString(),
-    title: recipe.title,
-    category: recipe.category,
-    difficulty: recipe.difficulty as 'Easy' | 'Moderate' | 'Advanced',
-    ingredients: recipe.ingredients,
-    instructions: recipe.instructions,
-    benefit: recipe.benefit
+    title: recipe.title || "Untitled Formulation",
+    category: recipe.category || "Uncategorized",
+    difficulty: recipe.difficulty || "Easy",
+    benefit: recipe.benefit || "",
+    instructions: recipe.instructions || "",
+    productUrl: recipe.productUrl || "",
+    
+    // CRITICAL SAFETIES: Ensures array-lists filter cleanly without breaking
+    ingredients: Array.isArray(recipe.ingredients) 
+      ? recipe.ingredients 
+      : recipe.ingredients 
+        ? [recipe.ingredients] 
+        : []
   }));
 
   return (

@@ -133,17 +133,18 @@ const serializedOil = {
               
               {/* Purchase button and availability tracker */}
               <div className="space-y-4 mb-2">
+                {/* Dynamic Purchase Button with Your Confirmed Etsy Store Link Fallback */}
                 {serializedOil.stock > 0 ? (
                   <a 
-                    href={serializedOil.etsyUrl} 
+                    href={serializedOil.etsyUrl && serializedOil.etsyUrl.trim() !== "" ? serializedOil.etsyUrl : "https://www.etsy.com/shop/NaturallyOfCourseCA"} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="block w-full py-4 bg-[#f1641e] text-white rounded-full font-bold text-center shadow-md hover:bg-[#d85215] transition-colors"
+                    className="block w-full py-4 bg-[#f1641e] text-white rounded-full font-bold text-center shadow-md hover:bg-[#d85215] transition-colors text-sm tracking-wide"
                   >
-                    Purchase on Etsy
+                    {serializedOil.etsyUrl && serializedOil.etsyUrl.trim() !== "" ? "Purchase on Etsy" : "Browse Our Etsy Shop"}
                   </a>
                 ) : (
-                  <button disabled className="w-full py-4 bg-stone-200 text-stone-400 rounded-full font-bold text-center cursor-not-allowed">
+                  <button disabled className="w-full py-4 bg-stone-200 text-stone-400 rounded-full font-bold text-center cursor-not-allowed text-sm">
                     Out of Stock
                   </button>
                 )}
