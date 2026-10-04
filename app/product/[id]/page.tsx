@@ -32,7 +32,7 @@ const serializedOil = {
   name: oil.name || "", 
   
   // RESTORED CORE PACKAGING FIELDS
-  volume: oil.volume || "Standard Size",
+  volume: oil.size || "Standard Size",
   stock: oil.stock !== undefined ? oil.stock : 1,
   price: oil.price || 0,
   description: oil.description || "",
