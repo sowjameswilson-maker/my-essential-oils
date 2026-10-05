@@ -9,7 +9,8 @@ export default function ProductSection({ initialOils }) {
   const [filter, setFilter] = useState('essential-oil');
 
   // 2. Remove 'all' from this list
-  const categories = ['essential-oil', 'hydrosol'];
+  // Add Artisanal Creations to the list
+  const categories = ['essential-oil', 'hydrosol', 'creation'];
 
   const filteredOils = initialOils.filter(oil => oil.type === filter);
 
